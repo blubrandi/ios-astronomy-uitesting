@@ -23,9 +23,11 @@ class AstronomyUITests: XCTestCase {
         
     }
     
+    // MARK: Test List
+    
     /*
      - Collection View Controller -
-     Async test for photo loading
+     Async test for photo loading ✅
      Arrow in navbar switches sols
      
      - Detail View Controller -
@@ -35,14 +37,21 @@ class AstronomyUITests: XCTestCase {
      Clicking Sol name in navbar from DetailVC takes you back to Sol Collection View VC
      */
     
-    // Test async for photo loading
+    //MARK: Tests
     
+    // Test async for photo loading
     func testForPhotoLoading() {
         let fetchedPhotosExpectation = expectation(for: NSPredicate(format: "count > 0"), evaluatedWith: app.cells.images, handler: nil)
         
         fetchedPhotosExpectation.expectationDescription = "Photos have been fetched and are displayed."
         waitForExpectations(timeout: 5)
     }
+    
+    func testImageGoesToDetailVC() {
+        app.collectionViews.children(matching: .cell).element(boundBy: 0).children(matching: .other).element.tap()
+    }
+    
+    //MARK: Properties
     
     private var app: XCUIApplication {
         return XCUIApplication()
