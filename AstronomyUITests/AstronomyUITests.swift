@@ -22,5 +22,38 @@ class AstronomyUITests: XCTestCase {
         app.launch()
         
     }
+    
+    /*
+     - Collection View Controller -
+     Async test for photo loading
+     Arrow in navbar switches sols
+     
+     - Detail View Controller -
+     Click on image from collection view controller and go to detail view controller
+     View corresponding image in detail view controller
+     save image to photo library
+     Clicking Sol name in navbar from DetailVC takes you back to Sol Collection View VC
+     */
+    
+    // Test async for photo loading
+    
+    func testForPhotoLoading() {
+        let fetchedPhotosExpectation = expectation(for: NSPredicate(format: "count > 0"), evaluatedWith: app.cells.images, handler: nil)
+        
+        fetchedPhotosExpectation.expectationDescription = "Photos have been fetched and are displayed."
+        waitForExpectations(timeout: 5)
+    }
+    
+    private var app: XCUIApplication {
+        return XCUIApplication()
+    }
+        
+    private var saveButton: XCUIElement {
+        return app.buttons["PhotoDetailViewController.SaveButton"]
+    }
+    
+    private func photoCell(for index: Int) -> XCUIElement {
+        return XCUIApplication().cells["photoCell\(index)"]
+    }
 
 }
