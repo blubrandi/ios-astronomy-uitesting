@@ -11,16 +11,11 @@ import XCTest
 class AstronomyUITests: XCTestCase {
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-        let app = XCUIApplication()
         app.launchArguments = ["UITesting"]
         app.launch()
-        
     }
     
     // MARK: Test List
@@ -55,21 +50,39 @@ class AstronomyUITests: XCTestCase {
         app.collectionViews.children(matching: .cell).element(boundBy: 7).children(matching: .other).element.tap()
     }
     
+//    func testSaveImageOnFirstRunAsksForPermission() {
+//        app.collectionViews.children(matching: .cell).element(boundBy: 0).children(matching: .other).element.tap()
+//
+//        let photodetailviewcontrollerSavebuttonButton = app/*@START_MENU_TOKEN@*/.buttons["PhotoDetailViewController.SaveButton"]/*[[".buttons[\"Save to Photo Library\"]",".buttons[\"PhotoDetailViewController.SaveButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+//        photodetailviewcontrollerSavebuttonButton.tap()
+//        app.alerts["“Astronomy” Would Like to Access Your Photos"].scrollViews.otherElements.buttons["OK"].tap()
+//        photodetailviewcontrollerSavebuttonButton.tap()
+//        app.alerts["Photo Saved!"].scrollViews.otherElements.buttons["Okay"].tap()
+//
+//    }
+    
     func testSaveImage() {
+        
+        let app = XCUIApplication()
+        app.collectionViews.children(matching: .cell).element(boundBy: 0).children(matching: .other).element.tap()
+        let photodetailviewcontrollerSavebuttonButton = app/*@START_MENU_TOKEN@*/.buttons["PhotoDetailViewController.SaveButton"]/*[[".buttons[\"Save to Photo Library\"]",".buttons[\"PhotoDetailViewController.SaveButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        photodetailviewcontrollerSavebuttonButton.tap()
+        app.alerts["Photo Saved!"].scrollViews.otherElements.buttons["Okay"].tap()
+        
     }
+    
+
     
     //MARK: Properties
     
-    private var app: XCUIApplication {
-        return XCUIApplication()
-    }
-        
+    private var app = XCUIApplication()
+    
     private var saveButton: XCUIElement {
         return app.buttons["PhotoDetailViewController.SaveButton"]
     }
     
-    private func photoCell(for index: Int) -> XCUIElement {
-        return XCUIApplication().cells["photoCell\(index)"]
-    }
+//    private func photoCell(for index: Int) -> XCUIElement {
+//        return XCUIApplication().cells["photoCell\(index)"]
+//    }
 
 }
