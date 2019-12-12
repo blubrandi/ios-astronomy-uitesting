@@ -31,8 +31,8 @@ class AstronomyUITests: XCTestCase {
      Arrow in navbar switches sols
      
      - Detail View Controller -
-     Click on image from collection view controller and go to detail view controller
-     View corresponding image in detail view controller
+     Tap on image from collection view controller and go to detail view controller ✅
+     View corresponding image in detail view controller ✅
      save image to photo library
      Clicking Sol name in navbar from DetailVC takes you back to Sol Collection View VC
      */
@@ -49,6 +49,13 @@ class AstronomyUITests: XCTestCase {
     
     func testImageGoesToDetailVC() {
         app.collectionViews.children(matching: .cell).element(boundBy: 0).children(matching: .other).element.tap()
+        app.navigationBars["Title"].buttons["Sol 15"].tap()
+        app.collectionViews.children(matching: .cell).element(boundBy: 1).children(matching: .other).element.tap()
+        app.navigationBars["Title"].buttons["Sol 15"].tap()
+        app.collectionViews.children(matching: .cell).element(boundBy: 7).children(matching: .other).element.tap()
+    }
+    
+    func testSaveImage() {
     }
     
     //MARK: Properties
