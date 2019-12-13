@@ -29,7 +29,7 @@ class AstronomyUITests: XCTestCase {
      Tap on image from collection view controller and go to detail view controller ✅
      View corresponding image in detail view controller ✅
      Save image to photo library ✅
-     Clicking Sol name (as back button) in navbar from DetailVC takes you back to Sol Collection View VC
+     Clicking Sol name (as back button) in navbar from DetailVC takes you back to Sol Collection View VC ✅
      */
     
     //MARK: Tests
