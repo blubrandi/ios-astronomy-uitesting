@@ -43,9 +43,12 @@ class AstronomyUITests: XCTestCase {
     }
     
     func testImageGoesToDetailVC() {
+        
         app.collectionViews.children(matching: .cell).element(boundBy: 0).children(matching: .other).element.tap()
+        XCTAssertTrue(app.navigationBars["Title"].exists)
         app.navigationBars["Title"].buttons["Sol 15"].tap()
         app.collectionViews.children(matching: .cell).element(boundBy: 1).children(matching: .other).element.tap()
+        XCTAssertTrue(app.navigationBars["Title"].exists)
         app.navigationBars["Title"].buttons["Sol 15"].tap()
         app.collectionViews.children(matching: .cell).element(boundBy: 7).children(matching: .other).element.tap()
     }
@@ -55,6 +58,7 @@ class AstronomyUITests: XCTestCase {
         let app = XCUIApplication()
         app.collectionViews.children(matching: .cell).element(boundBy: 0).children(matching: .other).element.tap()
         let photodetailviewcontrollerSavebuttonButton = app/*@START_MENU_TOKEN@*/.buttons["PhotoDetailViewController.SaveButton"]/*[[".buttons[\"Save to Photo Library\"]",".buttons[\"PhotoDetailViewController.SaveButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        XCTAssertTrue(photodetailviewcontrollerSavebuttonButton.exists)
         photodetailviewcontrollerSavebuttonButton.tap()
         app.alerts["Photo Saved!"].scrollViews.otherElements.buttons["Okay"].tap()
         
@@ -63,16 +67,18 @@ class AstronomyUITests: XCTestCase {
     func testSwitchSolCollectionView() {
         
         app.navigationBars["Sol 15"].buttons["PhotosCollectionViewController.NextSolButton"].tap()
+        XCTAssertTrue(app.navigationBars["Sol 16"].exists)
         app.navigationBars["Sol 16"].buttons["PhotosCollectionViewController.NextSolButton"].tap()
+        XCTAssertTrue(app.navigationBars["Sol 16"].exists)
         app.navigationBars["Sol 16"].buttons["PhotosCollectionViewController.PreviousSolButton"].tap()
         
     }
     
     func testBackFromDetailVC() {
-        
         app.collectionViews.children(matching: .cell).element(boundBy: 0).children(matching: .other).element.tap()
+        XCTAssertTrue(app.navigationBars["Title"].exists)
         app.navigationBars["Title"].buttons["Sol 15"].tap()
-        
+        XCTAssertTrue(app.navigationBars["Sol 15"].exists)
     }
     
 
